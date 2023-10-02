@@ -1,2 +1,4 @@
 htmxenv/
 .vscode/
+.prettierignore
+__pycache__/

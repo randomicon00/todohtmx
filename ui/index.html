@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List with HTMX</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.6"
+      integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+
+    <!-- Todo list will populate here -->
+    <div id="all-todo">
+      <div id="add-todo">
+        <form
+          hx-post="http://localhost:8000/todo/api/"
+          hx-swap="innerHTML"
+          hx-target="#add-todo"
+        >
+          <input type="text" name="task" />
+          <button type="submit">Add Todo</button>
+        </form>
+      </div>
+
+      <div
+        id="todo-list"
+        hx-get="http://localhost:8000/todo/api/"
+        hx-trigger="load"
+      >
+        <!-- Todo items will populate here -->
+      </div>
+    </div>
+  </body>
+</html>

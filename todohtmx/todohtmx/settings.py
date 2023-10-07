@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +39,10 @@ INSTALLED_APPS = [
 
     'rest_framework',
     # user apps
-    'todo',
+    'todo.apps.TodoConfig',
+    # todo vs todo.apps.TodoConfig (app name vs app config class)
+    # https://docs.djangoproject.com/en/4.2/ref/applications/#django.apps.AppConfig.name
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # added for CORS
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'todohtmx.urls'
@@ -125,3 +130,54 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Allow any origin (not recommended for production)
+CORS_ALLOW_ALL_ORIGINS = True
+
+'''
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8001',
+    'http://localhost:9000',
+    # 'https://example.com',
+]'''
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'hx-target',
+    'hx-current-url',
+    'hx-trigger',
+    'hx-request',
+]
+
+# Add logging to debug.log
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    # handlers send log messages to destinations
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    # loggers filter log messages for a specific application
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+# This is to allow both todo and todo/ to work
+# APPEND_SLASH = True

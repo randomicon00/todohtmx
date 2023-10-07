@@ -1,0 +1,89 @@
+/* General Container */
+#container {
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  margin-top: 2rem;
+  margin: 0 auto;
+  width: 500px;
+}
+
+#add-todo form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  max-width: 500px;
+  padding: 1rem;
+}
+
+#add-todo input {
+  flex: 3;
+  margin-right: 5px;
+}
+
+#add-todo button {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#add-todo input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+#add-todo button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#add-todo button:hover {
+  background-color: #0056b3;
+}
+
+/* Style the list */
+ul {
+  padding-inline-start: 0px;
+}
+
+#todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem auto;
+  width: 100%;
+}
+
+#todo-list li {
+  list-style-type: none;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+  max-width: 500px;
+  text-align: left;
+}
+
+#todo-list li:hover {
+  background-color: #eee;
+}
+
+.alert {
+  padding: 8px;
+  background-color: #4caf50; /* Green */
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+
+  max-height: 100px; /* Set to an arbitrary value larger than actual height */
+  transition: max-height 0.3s ease-out;
+}

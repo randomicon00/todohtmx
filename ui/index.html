@@ -11,7 +11,7 @@
   <body>
     <h1>Todo List</h1>
 
-    <!-- Todo list will populate here -->
+    <!-- Todo list with the possibility of adding a new item using htmx -->
     <div id="all-todo">
       <div id="add-todo">
         <form
@@ -29,7 +29,7 @@
         hx-get="http://localhost:8000/todo/api/"
         hx-trigger="load"
       >
-        <!-- Todo items will populate here using the htmx "hx-get" property tag -->
+        <!-- Todo list will populate here using the htmx "hx-get" property tag -->
       </div>
     </div>
   </body>

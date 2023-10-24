@@ -2,3 +2,4 @@ htmxenv/
 .vscode/
 .prettierignore
 __pycache__/
+debug.log

@@ -5,28 +5,6 @@ from rest_framework.response import Response
 from .models import Todo
 
 
-'''class TodoAPIViewOld(APIView):
-
-    def get(self, _request):
-        todos = Todo.objects.all()
-        html = '<ul>'
-        for todo in todos:
-            html += f'<li>{todo.task}</li>'
-        html += '</ul>'
-        return HttpResponse(html)
-
-    def post(self, request):
-        task = request.data.get('task')
-        if task is None or task == '':
-
-            return Response({'error': 'Please provide task'},
-                            status=status.HTTP_400_BAD_REQUEST)
-        Todo.objects.create(task=task)
-        html = ' <div> Task created!  <button hx-get="http://localhost:8000/todo/form/" hx-swap="innerHTML" hx-target="#add-todo" > Add another </button> </div> <div> This is the new list of tasks: </div> '
-        return HttpResponse(html)
-'''
-
-
 class TodoAPIView(APIView):
     def get(self, _request):
 

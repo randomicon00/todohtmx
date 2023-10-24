@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css" />
     <title>Todo List with HTMX</title>
     <script
       src="https://unpkg.com/htmx.org@1.9.6"
@@ -9,18 +10,17 @@
     ></script>
   </head>
   <body>
-    <h1>Todo List</h1>
-
-    <!-- Todo list with the possibility of adding a new item using htmx -->
-    <div id="all-todo">
+    <!-- In order to update multiple content, we use the first (and recommended) method 
+      described here: https://htmx.org/examples/update-other-content/ -->
+    <div id="container">
       <div id="add-todo">
         <form
           hx-post="http://localhost:8000/todo/api/"
-          hx-swap="innerHTML"
-          hx-target="#add-todo"
+          hx-swap="outerHTML"
+          hx-target="#container"
         >
           <input type="text" name="task" />
-          <button type="submit">Add Todo</button>
+          <button type="submit">Add Task</button>
         </form>
       </div>
 
@@ -29,7 +29,7 @@
         hx-get="http://localhost:8000/todo/api/"
         hx-trigger="load"
       >
-        <!-- Todo list will populate here using the htmx "hx-get" property tag -->
+        <!-- The TODO list will be swaped here -->
       </div>
     </div>
   </body>

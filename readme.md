@@ -10,9 +10,55 @@ This project aims to demonstrate how to use [HTMX](https://htmx.org/) for buildi
 
 ## How to Run
 
-1. Clone the repository
-2. Install dependencies
-3. Run the Django server
+First, you need to clone the repository:
+
+```bash
+git clone https://github.com/randomicon00/todohtmx.git
+```
+
+Then start a virtual environment using the command:
+
+```bash
+python3 -m venv <env-name>
+```
+
+Activate the virtual environment:
+
+- On Windows: 
+```cmd
+<env-name>\Scripts\activate
+```
+
+- On Unix Or MacOs:
+```bash 
+source <env-name>/bin/activate
+```
+
+Then install the dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+
+To test the demo:
+There are two components to the application.
+
+1. The API Server
+Navigate to the `todohtmx` directory and then run the server:
+
+```bash
+cd todohtmx
+python manage.py runserver
+```
+
+2. The front-end HTML:
+Serve the front-end using the following command (in a different terminal):
+
+```bash
+python -m http.server 8001
+```
+
+Make sure to replace `https://github.com/randomicon00/todohtmx.git` and `<env-name>` with your repository URL and preferred virtual environment name, respectively. And ensure you have a `requirements.txt` file with all the necessary dependencies listed.
 
 ## Dependencies
 

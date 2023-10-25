@@ -178,6 +178,3 @@ LOGGING = {
         },
     },
 }
-
-# This is to allow both todo and todo/ to work
-# APPEND_SLASH = True

@@ -6,7 +6,7 @@ This project aims to demonstrate how to use [HTMX](https://htmx.org/) for buildi
 
 - Lightweight
 - Server-side logic
-- Quick UI updates
+- Fast UI updates
 
 ## How to Run
 

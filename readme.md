@@ -1,6 +1,6 @@
 # HTMX Interactive App Showcase
 
-This project aims to demonstrate how to use [HTMX](https://htmx.org/) for building interactive web applications without relying on heavy front-end frameworks. It shows how HTMX can be integrated with Django to create a simple yet effective To-Do list application.
+This project aims to demonstrate how to use [HTMX](https://htmx.org/) for building interactive web applications without relying on heavy front-end frameworks. It shows how HTMX can be integrated with Django to create a simple yet effective To-Do list application. The motivation for starting this demo project was to explore the HTMX craze that has been gaining traction on social media platforms and especially on YouTube.
 
 ## Features
 
@@ -10,13 +10,13 @@ This project aims to demonstrate how to use [HTMX](https://htmx.org/) for buildi
 
 ## How to Run
 
-First, you need to clone the repository:
+First, the repository using the following command:
 
 ```bash
 git clone https://github.com/randomicon00/todohtmx.git
 ```
 
-Then start a virtual environment using the command:
+Then, start a virtual environment using the command:
 
 ```bash
 python3 -m venv <env-name>

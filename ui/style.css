@@ -1,23 +1,23 @@
-/* General Container */
+/* Main container */
 #container {
   font-family: Roboto, sans-serif;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin: 0 auto;
-  width: 500px;
+  width: 600px;
 }
 
 #add-todo form {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
-  max-width: 500px;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
   padding: 1rem;
 }
 
 #add-todo input {
   flex: 3;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 #add-todo button {
@@ -65,8 +65,8 @@ ul {
   margin: 0.5rem 0;
   border: 1px solid #ddd;
   border-radius: 0.25rem;
-  transition: background-color 0.3s ease;
-  max-width: 500px;
+  transition: background-color 0.5s ease;
+  max-width: 600px;
   text-align: left;
 }
 

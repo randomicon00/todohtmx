@@ -68,4 +68,3 @@ Make sure to replace `https://github.com/randomicon00/todohtmx.git` and `<env-na
 ## Question
 
 Do you think using HTMX for interactive UI is a better approach than using traditional heavy front-end frameworks? Why or why not?
-

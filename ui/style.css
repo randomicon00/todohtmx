@@ -83,7 +83,6 @@ ul {
   border-radius: 4px;
   font-family: "Roboto", sans-serif;
   font-size: 0.8rem;
-
   max-height: 100px; /* Set to an arbitrary value larger than actual height */
   transition: max-height 0.3s ease-out;
 }

@@ -6,7 +6,6 @@ from todo.models import Todo
 
 class TodoAPITestCase(TestCase):
 
-    # This method is called before each test.
     def setUp(self):
         Todo.objects.create(task="First task to do")
         Todo.objects.create(task="Second task to do")

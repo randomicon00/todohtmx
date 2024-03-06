@@ -26,7 +26,7 @@ class TodoAPITestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('Third task to do', str(response.content))
 
-    # Test method that posts a single todo with an invalid (empty) task.
+    # Test method that posts a single todo with an empty task.
     def test_post_todo_invalid(self):
         url = reverse('api_todos')
         data = {'task': ''}

@@ -169,7 +169,7 @@ LOGGING = {
             'filename': 'debug.log',
         },
     },
-    # loggers filter log messages for a specific application
+    # loggers filter log messages for a given application
     'loggers': {
         'django': {
             'handlers': ['file'],

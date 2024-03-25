@@ -2,13 +2,13 @@ from django.db import models
 
 
 class Faq(models.Model):
-    message = models.TextField()
+    msg = models.TextField()
 
     def __repr__(self) -> str:
-        return f"< {self.message}>"
+        return f"< {self.msg}>"
 
     def __str__(self) -> str:
-        return self.message
+        return self.msg
 
 
 class Todo(models.Model):

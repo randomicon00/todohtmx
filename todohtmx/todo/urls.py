@@ -3,4 +3,5 @@ from .views import TodoAPIView
 
 urlpatterns = [
     path("api/", TodoAPIView.as_view(), name="api_todos"),
+    # add more url paths here.
 ]

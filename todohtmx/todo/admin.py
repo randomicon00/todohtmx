@@ -3,3 +3,4 @@ from .models import Todo, Faq
 
 admin.site.register(Todo)
 admin.site.register(Faq)
+# register more models here

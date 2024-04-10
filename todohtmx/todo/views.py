@@ -11,25 +11,26 @@ class TodoAPIView(APIView):
         html = '<div id="container"><ul>'
         todos = Todo.objects.all()
         for todo in todos:
-            html += f'<li>{todo.task}</li>'
-        html += '</ul></div>'
+            html += f"<li>{todo.task}</li>"
+        html += "</ul></div>"
         return HttpResponse(html)
 
     def post(self, request):
-        task = request.data.get('task')
+        task = request.data.get("task")
         Todo.objects.create(task=task)
-        if task is None or task.strip() == '':
-            return HttpResponse('Please provide a task',
-                                status=status.HTTP_400_BAD_REQUEST)
+        if task is None or task.strip() == "":
+            return HttpResponse(
+                "Please provide a task", status=status.HTTP_400_BAD_REQUEST
+            )
 
         # Adding tasks to the list
-        tasks = '<ul>'
+        tasks = "<ul>"
         for todo in Todo.objects.all():
-            tasks += f'<li>{todo.task}</li>'
-        tasks += '</ul>'
+            tasks += f"<li>{todo.task}</li>"
+        tasks += "</ul>"
 
         # Adding fade out script
-        fadeOutScript = '''
+        fadeOutScript = """
         <script>
             window.scrollTo(0, document.body.scrollHeight)
             setTimeout(function () {
@@ -43,9 +44,11 @@ class TodoAPIView(APIView):
                     }, 300);
                 }
             }, 3000);
-        </script>'''
+        </script>"""
 
-        html = fadeOutScript + '''
+        html = (
+            fadeOutScript
+            + """
         <div id="container">
             <div id="add-todo">
                 <form
@@ -57,10 +60,16 @@ class TodoAPIView(APIView):
                     <button type="submit">Add Task</button>
                 </form>
             </div>
-            <div id="todo-list">''' + tasks + '''</div>
+            <div id="todo-list">"""
+            + tasks
+            + """</div>
             <div id="success-alert" class="alert">
                 Task has been successfully created!
             </div>
         </div>
-        '''
+        """
+        )
         return HttpResponse(html)
+
+
+# Add more views here

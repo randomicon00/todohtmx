@@ -3,3 +3,4 @@ htmxenv/
 .prettierignore
 __pycache__/
 debug.log
+gp.sh

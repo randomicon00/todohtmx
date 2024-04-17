@@ -155,7 +155,7 @@ CORS_ALLOW_HEADERS = [
     "hx-request",
 ]
 
-# Write messages to the `debug.log` file
+# Log output to `debug.log` file
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,

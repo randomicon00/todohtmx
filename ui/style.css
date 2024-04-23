@@ -1,4 +1,3 @@
-/* Main container */
 #container {
   font-family: Roboto, sans-serif;
   text-align: center;
@@ -46,7 +45,6 @@
   background-color: #0056b3;
 }
 
-/* Style the list */
 ul {
   padding-inline-start: 0px;
 }

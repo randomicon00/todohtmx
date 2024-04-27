@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Todo, FAQ
-from .serializers import FAQSerializer
+from .models import Todo, Faq
+from .serializers import FaqSerializer
 
 
 class TodoAPIView(APIView):
@@ -74,9 +74,9 @@ class TodoAPIView(APIView):
         return HttpResponse(html)
 
 
-class FAQAPIView(APIView):
+class FaqAPIView(APIView):
     def get(self, request):
         print("")
-        faqs = FAQ.objects.all()
-        serializer = FAQSerializer(faqs, many=True)
+        faqs = Faq.objects.all()
+        serializer = FaqSerializer(faqs, many=True)
         return Response(serializer)

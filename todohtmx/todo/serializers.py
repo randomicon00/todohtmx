@@ -1,8 +1,8 @@
 from rest_framework import Serializers
-from .models import FAQ
+from .models import Faq
 
 
-class FAQSerializer(serializers.ModelSerializer):
+class FaqSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FAQ
+        model = Faq
         fields = ["id", "question", "answer"]

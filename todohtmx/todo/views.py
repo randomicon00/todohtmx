@@ -76,7 +76,6 @@ class TodoAPIView(APIView):
 
 class FaqAPIView(APIView):
     def get(self, request):
-        print("")
         faqs = Faq.objects.all()
         serializer = FaqSerializer(faqs, many=True)
         return Response(serializer)

@@ -11,12 +11,12 @@ class Todo(models.Model):
         return self.task
 
 
-class FAQ(model.Models):
+class Faq(model.Models):
     question = models.CharField(max_length=200)
     answer = models.TextField()
 
     def __repr__(self) -> str:
-        return f"<FAQ {self.task}>"
+        return f"<Faq {self.task}>"
 
     def __str__(self) -> str:
         return self.question

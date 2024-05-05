@@ -12,7 +12,7 @@ class Todo(models.Model):
         (3, "Completed"),
     ]
 
-    # Status
+    # Task status
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
     def __repr__(self) -> str:

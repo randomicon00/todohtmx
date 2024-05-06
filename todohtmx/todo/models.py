@@ -33,4 +33,4 @@ class Faq(model.Models):
         return self.question
 
 
-# TODO Add a model for managing statistics
+# TODO Statistics Model

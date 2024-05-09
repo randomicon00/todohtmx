@@ -79,3 +79,32 @@ class FaqAPIView(APIView):
         faqs = Faq.objects.all()
         serializer = FaqSerializer(faqs, many=True)
         return Response(serializer)
+
+
+# TODO statistics view
+class StatisticsView(APIView):
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        pass
+
+
+"""
+inspiration
+    def post(self, request):
+        serializer = ItemSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        item = Item.objects.get(pk=pk)
+        serializer = ItemSerializer(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+"""

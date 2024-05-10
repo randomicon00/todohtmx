@@ -3,17 +3,14 @@ from django.db.models import Count
 
 
 class Todo(models.Model):
-    # Task description
     task = models.CharField(max_length=255)
 
-    # Status choices
     STATUS_CHOICES = [
         (1, "Pending"),
         (2, "In Progress"),
         (3, "Completed"),
     ]
 
-    # Task status
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
     def __repr__(self) -> str:
@@ -32,9 +29,6 @@ class Faq(model.Models):
 
     def __str__(self) -> str:
         return self.question
-
-
-# TODO Statistics Model
 
 
 class Statistics(models.Model):

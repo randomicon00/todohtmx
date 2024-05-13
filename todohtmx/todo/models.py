@@ -36,7 +36,7 @@ class Statistics(models.Model):
     in_progress_count = models.IntegerField(default=0)
     completed_count = models.IntegerField(default=0)
 
-    def update_statistics(self):
+    def update_stats(self):
         self.pending_count = Todo.objects.filter(status=1).count()
         self.in_progress_count = Todo.objects.filter(status=2).count()
         self.completed_count = Todo.objects.filter(status=3).count()

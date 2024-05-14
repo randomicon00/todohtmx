@@ -6,7 +6,7 @@ class FaqSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faq
-        fields = ["question", "answer"]
+        fields = ["question", "answer", "question_length"]
 
 
     def get_question_length(self, obj):
@@ -21,7 +21,8 @@ class StatisticsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Statistics
-        fields = ["pending_count", "in_progress_count", "completed_count"]
+        fields = ["pending_count", "in_progress_count", "completed_count", "total_count"]
+        read_only_fields = ["total_count", "completed_percentage"]
 
     def get_total_count(self, obj):
         return obj.pending_count + obj.progress_count + obj.completed_count

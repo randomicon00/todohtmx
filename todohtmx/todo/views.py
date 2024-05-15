@@ -13,7 +13,7 @@ class TodoAPIView(APIView):
         html = '<div id="container"><ul>'
         todos = Todo.objects.all()
         for todo in todos:
-            html += f"<li>{todo.task} - {todo.get_status_display()}</li>"
+            html += f"<li>{todo.task}  [{todo.get_status_display()]}</li>"
         html += "</ul></div>"
         return HttpResponse(html)
 
@@ -28,7 +28,7 @@ class TodoAPIView(APIView):
         # Adding tasks to the list
         tasks = "<ul>"
         for todo in Todo.objects.all():
-            tasks += f"<li>{todo.task} - {todo.get_status_display()}</li>"
+            tasks += f"<li>{todo.task}  [{todo.get_status_display()}]</li>"
         tasks += "</ul>"
 
         # Adding fade out script

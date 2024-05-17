@@ -14,7 +14,12 @@ class FaqSerializer(serializers.ModelSerializer):
 
     def validate_question(self, value):
         if len(value) < 10:
-            raise serializers.ValidationError("The question must be at least 10 characters length"
+            raise serializers.ValidationError("Question must be at least 10 characters length"
+        return value
+
+    def validate_answer(self, value):
+        if len(value) < 10:
+            raise serializers.ValidationError("Answer must be at least 10 characters in length")
         return value
 
 class StatisticsSerializer(serializers.ModelSerializer):

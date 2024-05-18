@@ -9,6 +9,7 @@ class Todo(models.Model):
         (1, "Pending"),
         (2, "In Progress"),
         (3, "Completed"),
+        (4, "Archived"),
     ]
 
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
@@ -35,15 +36,17 @@ class Statistics(models.Model):
     pending_count = models.IntegerField(default=0)
     in_progress_count = models.IntegerField(default=0)
     completed_count = models.IntegerField(default=0)
+    archived_count = models.IntegerField(default=0)
 
     def update_stats(self):
         self.pending_count = Todo.objects.filter(status=1).count()
         self.in_progress_count = Todo.objects.filter(status=2).count()
         self.completed_count = Todo.objects.filter(status=3).count()
+        self.archived_count = Todo.objects.filter(status=4).count()
         self.save()
 
     def __repr__(self) -> str:
-        return f"<Statistics Pending: {self.pending_count}, In Progress: {self.in_progress_count}, Completed: {self.completed_count}>"
+        return f"<Statistics Pending: {self.pending_count}, In Progress: {self.in_progress_count}, Completed: {self.completed_count}, Archived: {self.archived_count}>"
 
     def __str__(self) -> str:
-        return f"Pending: {self.pending_count}, In Progress: {self.in_progress_count}, Completed: {self.completed_count}"
+        return f"Pending: {self.pending_count}, In Progress: {self.in_progress_count}, Completed: {self.completed_count}, Archived: {self.archived_count}"

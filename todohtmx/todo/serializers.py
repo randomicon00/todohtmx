@@ -34,4 +34,5 @@ class StatisticsSerializer(serializers.ModelSerializer):
 
     def get_completed_percentage(self, obj):
         total = self.get_total_count(obj)
-        return (obj.completed_count / total * 100) if total > 0 else 0
+        done_projects = obj.completed_count + obj.archived_count
+        return ((done_projects / total * 100) if total > 0 else 0

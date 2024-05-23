@@ -9,7 +9,7 @@ from .serializers import FaqSerializer
 class TodoAPIView(APIView):
     def get(self, _request):
 
-        # Adding tasks to the list
+        # Add tasks to the list
         html = '<div id="container"><ul>'
         todos = Todo.objects.all()
         for todo in todos:
@@ -25,13 +25,13 @@ class TodoAPIView(APIView):
                 "Please provide a task", status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Adding tasks to the list
+        # Add tasks to the list
         tasks = "<ul>"
         for todo in Todo.objects.all():
             tasks += f"<li>{todo.task}  [{todo.get_status_display()}]</li>"
         tasks += "</ul>"
 
-        # Adding fade out script
+        # Add fade out script
         fadeOutScript = """
         <script>
             window.scrollTo(0, document.body.scrollHeight)
@@ -80,8 +80,7 @@ class FaqAPIView(APIView):
         serializer = FaqSerializer(faqs, many=True)
         return Response(serializer)
 
-
-# TODO statistics view
+# TODO Use htmx instead of a simple json response 
 class StatisticsView(APIView):
     def get(self, request):
         stats = Statistics.objects.first()

@@ -3,7 +3,7 @@ from django.db.models import Count
 
 
 class Todo(models.Model):
-    task = models.CharField(max_length=255)
+    task = models.TextField()
 
     STATUS_CHOICES = [
         (1, "Pending"),

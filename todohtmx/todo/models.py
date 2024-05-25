@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Count
+from django.db.models import Count, Q
 
 
 class Todo(models.Model):
@@ -39,10 +39,21 @@ class Statistics(models.Model):
     archived_count = models.IntegerField(default=0)
 
     def update_stats(self):
-        self.pending_count = Todo.objects.filter(status=1).count()
-        self.in_progress_count = Todo.objects.filter(status=2).count()
-        self.completed_count = Todo.objects.filter(status=3).count()
-        self.archived_count = Todo.objects.filter(status=4).count()
+        # Aggregate counts for each status
+        counts = Todo.objects.aggregate(
+            pending_count=Count("id", filter=Q(status=1)),
+            in_progress_count=Count("id", filter=Q(status=2)),
+            completed_count=Count("id", filter=Q(status=3)),
+            archived_count=Count("id", filter=Q(status=4)),
+        )
+
+        # Update the model's fields with the aggregated counts
+        self.pending_count = counts["pending_count"]
+        self.in_progress_count = counts["in_progress_count"]
+        self.completed_count = counts["completed_count"]
+        self.archived_count = counts["archived_count"]
+
+        # Save the updated counts to the database
         self.save()
 
     def __repr__(self) -> str:

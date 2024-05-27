@@ -39,7 +39,6 @@ class Statistics(models.Model):
     archived_count = models.IntegerField(default=0)
 
     def update_stats(self):
-        # Aggregate counts for each status
         counts = Todo.objects.aggregate(
             pending_count=Count("id", filter=Q(status=1)),
             in_progress_count=Count("id", filter=Q(status=2)),
@@ -47,13 +46,11 @@ class Statistics(models.Model):
             archived_count=Count("id", filter=Q(status=4)),
         )
 
-        # Update the model's fields with the aggregated counts
         self.pending_count = counts["pending_count"]
         self.in_progress_count = counts["in_progress_count"]
         self.completed_count = counts["completed_count"]
         self.archived_count = counts["archived_count"]
 
-        # Save the updated counts to the database
         self.save()
 
     def __repr__(self) -> str:

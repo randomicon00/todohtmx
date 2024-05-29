@@ -15,7 +15,7 @@ class Todo(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
     def __repr__(self) -> str:
-        return f"<Todo {self.task}> Status: {self.get_status_display()}"
+        return f"<Todo Task: {self.task}, Status: {self.get_status_display()}>"
 
     def __str__(self) -> str:
         return f"{self.task} - {self.get_status_display()}"
@@ -26,7 +26,7 @@ class Faq(model.Models):
     answer = models.TextField()
 
     def __repr__(self) -> str:
-        return f"<Faq {self.task}>"
+        return f"<Faq Question: {self.question}, Answer: {self.answer}>"
 
     def __str__(self) -> str:
         return self.question

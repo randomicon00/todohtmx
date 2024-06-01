@@ -14,8 +14,13 @@ class TodoAdmin(admin.ModelAdmin):
 
 
 class FaqAdmin(admin.ModelAdmin):
-    list_display = ("task", "status", "status_display")
+    list_display = ("question", "status_display")
     search_fields = ("question",)
+
+    def status_display(self, obj):
+        return obj.get_status_display()
+
+    status_display.short_description = "Status"
 
 
 class StatisticsAdmin(admin.ModelAdmin):
@@ -27,6 +32,6 @@ class StatisticsAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(Todo)
-admin.site.register(Faq)
-admin.site.register(Statistics)
+admin.site.register(Todo, TodoAdmin)
+admin.site.register(Faq, FaqAdmin)
+admin.site.register(Statistics, StatisticsAdmin)

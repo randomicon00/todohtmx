@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import Count, Q
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
 
 class Todo(models.Model):
@@ -58,3 +60,10 @@ class Statistics(models.Model):
 
     def __str__(self) -> str:
         return f"Pending: {self.pending_count}, In Progress: {self.in_progress_count}, Completed: {self.completed_count}, Archived: {self.archived_count}"
+
+
+@receiver(post_save, sender=Todo)
+@receiver(post_detele, sender=Todo)
+def update_statistics(sender, instance, **kwargs):
+    stats, created = Statistics.objects.get_or_create(pk=1)
+    stats.update_stats()

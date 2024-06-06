@@ -10,17 +10,12 @@ class TodoAdmin(admin.ModelAdmin):
     def status_display(self, obj):
         return obj.get_status_display()
 
-    status_display.short_description = "Status"
+    status_display.short_description = "Task Status"
 
 
 class FaqAdmin(admin.ModelAdmin):
     list_display = ("question", "status_display")
     search_fields = ("question",)
-
-    def status_display(self, obj):
-        return obj.get_status_display()
-
-    status_display.short_description = "Status"
 
 
 class StatisticsAdmin(admin.ModelAdmin):

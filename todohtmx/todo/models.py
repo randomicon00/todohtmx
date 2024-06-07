@@ -67,7 +67,6 @@ class Statistics(models.Model):
 def update_statistics(sender, instance, **kwargs):
     stats, created = Statistics.objects.get_or_create(pk=1)
     if created:
-        # Optionally, initialize stats or perform other setup actions
         stats.pending_count = 0
         stats.in_progress_count = 0
         stats.completed_count = 0

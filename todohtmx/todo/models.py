@@ -20,7 +20,7 @@ class Todo(models.Model):
         return f"<Todo Task: {self.task}, Status: {self.get_status_display()}>"
 
     def __str__(self) -> str:
-        return f"{self.task} - {self.get_status_display()}"
+        return f"{self.task}, {self.get_status_display()}"
 
 
 class Faq(model.Models):

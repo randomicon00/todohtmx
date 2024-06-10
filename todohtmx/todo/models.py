@@ -66,6 +66,7 @@ class Statistics(models.Model):
 @receiver(post_detele, sender=Todo)
 def update_statistics(sender, instance, **kwargs):
     stats, created = Statistics.objects.get_or_create(pk=1)
+    # In case we have just created an instance of the Statistics model
     if created:
         stats.pending_count = 0
         stats.in_progress_count = 0

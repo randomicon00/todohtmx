@@ -80,8 +80,8 @@ class FaqAPIView(APIView):
         serializer = FaqSerializer(faqs, many=True)
         return Response(serializer)
 
-# TODO Use htmx instead of a simple json response 
-class StatisticsView(APIView):
+# TODO Use htmx instead of a json response (inspiration TodoAPI view) 
+class StatisticsAPIView(APIView):
     def get(self, request):
         stats = Statistics.objects.first()
         if not stats:

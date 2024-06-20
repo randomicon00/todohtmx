@@ -73,14 +73,14 @@ class TodoAPIView(APIView):
         )
         return HttpResponse(html)
 
-
+# TODO Use htmx instead of a json response i.e. return HttpResponse(html)
 class FaqAPIView(APIView):
     def get(self, request):
         faqs = Faq.objects.all()
         serializer = FaqSerializer(faqs, many=True)
         return Response(serializer)
 
-# TODO Use htmx instead of a json response (inspiration TodoAPI view) 
+# TODO Use htmx instead of a json response i.e. return HttpResponse(html) 
 class StatisticsAPIView(APIView):
     def get(self, request):
         stats = Statistics.objects.first()

@@ -28,7 +28,17 @@
         hx-get="http://localhost:8000/todo/api/"
         hx-trigger="load"
       >
-        <!-- The TODO list will be displayed here -->
+        <!-- TODO list will be displayed here -->
+      </div>
+    </div>
+    <div id="faq-section" hx-get="/api/faq" hx-target="#faq-container" hx-swap="outerHTML">
+      <div id="faq-container">
+        <!-- FAQs will be displayed here -->
+      </div>
+    </div>
+    <div id="statistics-section" hx-get="/api/stats" hx-target="#statistics-container" hx-swap="outerHTML">
+      <div id="statistics-container">
+        <!-- Statistics will be displayed here -->
       </div>
     </div>
   </body>

@@ -13,7 +13,7 @@ class TodoAPIView(APIView):
         html = '<div id="container"><ul>'
         todos = Todo.objects.all()
         for todo in todos:
-            html += f"<li>{todo.task}  [{todo.get_status_display()]}</li>"
+            html += f"<li>{todo.task}  [{todo.get_status_display()}]</li>"
         html += "</ul></div>"
         return HttpResponse(html)
 
@@ -73,27 +73,50 @@ class TodoAPIView(APIView):
         )
         return HttpResponse(html)
 
-# TODO Use htmx instead of a json response i.e. return HttpResponse(html)
-class FaqAPIView(APIView):
-    def get(self, request):
-        faqs = Faq.objects.all()
-        serializer = FaqSerializer(faqs, many=True)
-        return Response(serializer)
 
-# TODO Use htmx instead of a json response i.e. return HttpResponse(html) 
+class FaqAPIView(APIView):
+    def get(self, _request):
+        faqs = Faq.objects.all()
+        html = '<div id="faq-container"><ul>'
+        for faq in faqs:
+            html += f"<li><strong>{faq.question}</strong><p>{faq.answer}</p></li>"
+        html += "</ul></div>"
+        return HttpResponse(html)
+
 class StatisticsAPIView(APIView):
-    def get(self, request):
+    def get(self, _request):
         stats = Statistics.objects.first()
         if not stats:
             stats = Statistics()
             stats.save()
-        serializer = StatisticsSerializer(stats)
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            stats.update_stats()
+        html = '<div id="statistics-container">'
+        html += f"<p>Pending Count: {stats.pending_count}</p>"
+        html += f"<p>In Progress Count: {stats.in_progress_count}</p>"
+        html += f"<p>Completed Count: {stats.completed_count}</p>"
+        html += f"<p>Archived Count: {stats.archived_count}</p>"
+        html += "</div>"
+        return HttpResponse(html)
 
     def post(self, request):
-        serializer = StatisticsSerializer(data=stats)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        stats = Statistics.objects.first()
+        if not stats:
+            stats = Statistics()
+            stats.save()
+        else:
+            stats.update_stats()
+
+        hdef get(self, _request):
+        faqs = Faq.objects.all()
+        html = '<div id="faq-container"><ul>'
+        for faq in faqs:
+            html += f"<li><strong>{faq.question}</strong><p>{faq.answer}</p></li>"
+        html += "</ul></div>"
+        return HttpResponse(html)tml = '<div id="statistics-container">'
+        html += f"<p>Pending Count: {stats.pending_count}</p>"
+        html += f"<p>In Progress Count: {stats.in_progress_count}</p>"
+        html += f"<p>Completed Count: {stats.completed_count}</p>"
+        html += f"<p>Archived Count: {stats.archived_count}</p>"
+        html += "</div>"
+        return HttpResponse(html)

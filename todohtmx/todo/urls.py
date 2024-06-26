@@ -6,6 +6,8 @@ urlpatterns = [
     path("api/faq", FaqAPIView.as_view(), name="faq_api"),
     path("api/stats", StatisticsAPIView.as_view(), name="stats_api"),
     # TODO use web sockets and htmx to build a live chat support app
+    # TODO Add consumer and middleware logic
+    # path("api/chat", consumers.ChatConsumer.as_asgi(), name="stats_api"),
     # path("api/chat", ChatAPIView.as_view(), name="chat_api"),
     # add more paths here
 ]

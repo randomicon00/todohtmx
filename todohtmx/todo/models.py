@@ -33,7 +33,6 @@ class Faq(model.Models):
     def __str__(self) -> str:
         return self.question
 
-
 class Statistics(models.Model):
     pending_count = models.IntegerField(default=0)
     in_progress_count = models.IntegerField(default=0)
@@ -60,6 +59,16 @@ class Statistics(models.Model):
 
     def __str__(self) -> str:
         return f"Pending: {self.pending_count}, In Progress: {self.in_progress_count}, Completed: {self.completed_count}, Archived: {self.archived_count}"
+
+
+class Message(models.Models):
+    content = models.TextField()
+
+    def __repr__(self):
+        return f"<Message Content: {self.content}>"
+
+    def __str__(self):
+        return f"Content: {self.content}"
 
 
 @receiver(post_save, sender=Todo)

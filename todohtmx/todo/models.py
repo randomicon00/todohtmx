@@ -63,12 +63,13 @@ class Statistics(models.Model):
 
 class Message(models.Models):
     content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __repr__(self):
-        return f"<Message Content: {self.content}>"
+        return f"<Message Content: {self.content}, TimeStamp: {self.timestamp}>"
 
     def __str__(self):
-        return f"Content: {self.content}"
+        return f"Content: {self.content}, TimeStamp: {self.timestamp}"
 
 
 @receiver(post_save, sender=Todo)

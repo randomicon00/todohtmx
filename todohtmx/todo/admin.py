@@ -27,6 +27,13 @@ class StatisticsAdmin(admin.ModelAdmin):
     )
 
 
+class Message(models.Models):
+    list_display = (
+        "content",
+        "timestamp",
+    )
+
+
 admin.site.register(Todo, TodoAdmin)
 admin.site.register(Faq, FaqAdmin)
 admin.site.register(Statistics, StatisticsAdmin)

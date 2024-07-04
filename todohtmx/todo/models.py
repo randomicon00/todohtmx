@@ -33,6 +33,7 @@ class Faq(model.Models):
     def __str__(self) -> str:
         return self.question
 
+
 class Statistics(models.Model):
     pending_count = models.IntegerField(default=0)
     in_progress_count = models.IntegerField(default=0)
@@ -76,7 +77,6 @@ class Message(models.Models):
 @receiver(post_detele, sender=Todo)
 def update_statistics(sender, instance, **kwargs):
     stats, created = Statistics.objects.get_or_create(pk=1)
-    # In case we have just created an instance of the Statistics model
     if created:
         stats.pending_count = 0
         stats.in_progress_count = 0

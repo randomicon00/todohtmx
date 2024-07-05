@@ -9,7 +9,6 @@ from .serializers import FaqSerializer
 class TodoAPIView(APIView):
     def get(self, _request):
 
-        # Add tasks to the list
         html = '<div id="container"><ul>'
         todos = Todo.objects.all()
         for todo in todos:
@@ -120,3 +119,5 @@ class StatisticsAPIView(APIView):
         html += f"<p>Archived Count: {stats.archived_count}</p>"
         html += "</div>"
         return HttpResponse(html)
+
+# TODO Add chat container to demonstrate the use of web sockets.

@@ -9,7 +9,7 @@
 #add-todo form {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   max-width: 600px;
   padding: 1rem;
 }

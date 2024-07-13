@@ -174,3 +174,6 @@ LOGGING = {
         },
     },
 }
+
+SOME_SETTINGS = 10
+

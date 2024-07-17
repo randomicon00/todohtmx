@@ -3,14 +3,14 @@
   text-align: center;
   margin-top: 4rem;
   margin: 1rem auto;
-  width: 640px;
+  width: 600px;
 }
 
 #add-todo form {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
-  max-width: 640px;
+  max-width: 600px;
   padding: 1rem;
 }
 

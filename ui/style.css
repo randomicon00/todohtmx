@@ -73,7 +73,7 @@ ul {
 }
 
 .alert {
-  padding: 10px;
+  padding: 1rem;
   background-color: #4caf50;
   color: white;
   margin-bottom: 15px;

@@ -1,7 +1,7 @@
 #container {
   font-family: Roboto, sans-serif;
   text-align: center;
-  margin-top: 4rem;
+  margin-top: 3rem;
   margin: 1rem auto;
   width: 600px;
 }
@@ -9,7 +9,7 @@
 #add-todo form {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   max-width: 600px;
   padding: 1rem;
 }

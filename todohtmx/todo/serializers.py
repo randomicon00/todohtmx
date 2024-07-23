@@ -35,7 +35,9 @@ class StatisticsSerializer(serializers.ModelSerializer):
     def get_completed_percentage(self, obj):
         total = self.get_total_count(obj)
         done = obj.completed_count + obj.archived_count
-        return ((done / total * 100) if total > 0 else 0
+        return (done / total * 100) if total > 0 else 0
 
-
-# TODO Add a messages serializer here.
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ["content", "timestamp"]

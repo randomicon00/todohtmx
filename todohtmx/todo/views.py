@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Todo, Faq
-from .serializers import FaqSerializer
+from .serializers import FaqSerializer, MessageSerializer
 
 
 class TodoAPIView(APIView):
@@ -121,3 +121,15 @@ class StatisticsAPIView(APIView):
         return HttpResponse(html)
 
 # TODO Add chat container to demonstrate the use of web sockets.
+class MessageAPIView(APIView):
+    def get(self, request):
+        messages = Message.objects.all()
+        serializer = MessageSerializer(messages, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = MessageSerializer(request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

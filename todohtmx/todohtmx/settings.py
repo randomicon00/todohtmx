@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # todo vs todo.apps.TodoConfig (app name vs app config class)
     # https://docs.djangoproject.com/en/4.2/ref/applications/#django.apps.AppConfig.name
     "corsheaders",
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -177,3 +178,5 @@ LOGGING = {
 
 SOME_SETTINGS = 10
 
+# For channels (websocket) configuration
+ASGI_APPLICATION = "todohtmx.asgi.application"

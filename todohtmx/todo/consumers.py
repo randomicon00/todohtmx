@@ -12,7 +12,7 @@ class ChatConsumer(WebSocketConsumer):
         self.accept()
 
     def disconnect(self):
-        # TODO leave room group
+        # TODO leave room group using channel_layer
         pass
 
     def receive(self, text_data):

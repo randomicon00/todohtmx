@@ -16,7 +16,7 @@ class ChatConsumer(WebSocketConsumer):
         self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     def receive(self, text_data):
-        # TODO
+        # TODO implement receive by sending json messages
         pass
 
     def chat_messsage(self, event):

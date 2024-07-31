@@ -13,7 +13,7 @@ class ChatConsumer(WebSocketConsumer):
 
     def disconnect(self):
         # Leave room group
-        pass
+        self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     def receive(self, text_data):
         # TODO

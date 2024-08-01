@@ -16,6 +16,7 @@ class TodoAdmin(admin.ModelAdmin):
 class FaqAdmin(admin.ModelAdmin):
     list_display = ("question", "status_display")
     search_fields = ("question",)
+    ordering = ("-created_at",)
 
 
 class StatisticsAdmin(admin.ModelAdmin):
@@ -38,4 +39,3 @@ admin.site.register(Todo, TodoAdmin)
 admin.site.register(Faq, FaqAdmin)
 admin.site.register(Statistics, StatisticsAdmin)
 admin.site.register(Message, MessageAdmin)
-

@@ -14,7 +14,7 @@ class TodoAdmin(admin.ModelAdmin):
 
 
 class FaqAdmin(admin.ModelAdmin):
-    list_display = ("question", "status_display")
+    list_display = ("question", "answer")
     search_fields = ("question",)
     ordering = ("-created_at",)
 

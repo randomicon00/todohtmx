@@ -30,4 +30,5 @@ class ChatConsumer(WebSocketConsumer):
         )
 
     def chat_messsage(self, event):
+        # TODO implement chat message between message/sender
         pass

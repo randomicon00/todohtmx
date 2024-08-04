@@ -180,3 +180,10 @@ SOME_SETTINGS = 10
 
 # Use the default ASGI application setting provided by Django
 ASGI_APPLICATION = "todohtmx.asgi.application"
+
+# Add a channel layer configuration (using in-memory for simplicity)
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    }
+}

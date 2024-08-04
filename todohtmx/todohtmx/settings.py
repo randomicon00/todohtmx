@@ -178,5 +178,5 @@ LOGGING = {
 
 SOME_SETTINGS = 10
 
-# For channels (websocket) configuration
+# Use the default ASGI application setting provided by Django
 ASGI_APPLICATION = "todohtmx.asgi.application"

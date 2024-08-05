@@ -33,4 +33,12 @@ class ChatConsumer(WebSocketConsumer):
         message = event["message"]
         sender = event["sender"]
 
-        # TODO send message to WebSocket
+        # Send message to WebSocket
+        self.send(
+            text_data=json.dumps(
+                {
+                    "message": message,
+                    "sender": sender,
+                }
+            )
+        )

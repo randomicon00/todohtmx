@@ -77,6 +77,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "todohtmx.wsgi.application"
 
+# Use the default ASGI application setting provided by Django
+ASGI_APPLICATION = "todohtmx.asgi.application"
+
+# Add a channel layer configuration (using in-memory for simplicity)
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -133,6 +142,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Allow any origin (not recommended for production)
 CORS_ALLOW_ALL_ORIGINS = True
 
+# Uncomment to selectively choose the allowed CORS urls
 """
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8001',
@@ -177,13 +187,3 @@ LOGGING = {
 }
 
 SOME_SETTINGS = 10
-
-# Use the default ASGI application setting provided by Django
-ASGI_APPLICATION = "todohtmx.asgi.application"
-
-# Add a channel layer configuration (using in-memory for simplicity)
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
-    }
-}

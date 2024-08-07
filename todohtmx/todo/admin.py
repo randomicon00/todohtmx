@@ -35,7 +35,6 @@ class MessageAdmin(models.Models):
     )
 
 
-# Do not forget to add admin classes to the admin interface
 admin.site.register(Todo, TodoAdmin)
 admin.site.register(Faq, FaqAdmin)
 admin.site.register(Statistics, StatisticsAdmin)

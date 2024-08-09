@@ -33,9 +33,9 @@ class StatisticsSerializer(serializers.ModelSerializer):
         return obj.pending_count + obj.progress_count + obj.completed_count + obj.archived_count
 
     def get_completed_percentage(self, obj):
-        total = self.get_total_count(obj)
-        done = obj.completed_count + obj.archived_count
-        return (done / total * 100) if total > 0 else 0
+        total_count = self.get_total_count(obj)
+        done_count = obj.completed_count + obj.archived_count
+        return (done_count / total_count * 100) if total_count > 0 else 0
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:

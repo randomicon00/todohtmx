@@ -142,7 +142,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Allow any origin (not recommended for production)
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Uncomment to selectively choose the allowed CORS urls
+# Instead, selectively choose the origins to allow
 """
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8001',

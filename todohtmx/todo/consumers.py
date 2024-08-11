@@ -33,7 +33,6 @@ class ChatConsumer(WebSocketConsumer):
         message = event["message"]
         sender = event["sender"]
 
-        # Send message to WebSocket
         self.send(
             text_data=json.dumps(
                 {

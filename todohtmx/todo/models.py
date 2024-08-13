@@ -78,8 +78,12 @@ class Message(models.Models):
 def update_statistics(sender, instance, **kwargs):
     stats, created = Statistics.objects.get_or_create(pk=1)
     if created:
-        stats.pending_count = 0
-        stats.in_progress_count = 0
-        stats.completed_count = 0
-        stats.archived_count = 0
+        initial_counts = {
+            "pending_count": 0,
+            "in_progress_count": 0,
+            "completed_count": 0,
+            "archived_count": 0,
+        }
+        for key, value in initial_counts.items():
+            setattr(stats, key, value)
     stats.update_stats()

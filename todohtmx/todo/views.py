@@ -123,9 +123,12 @@ class StatisticsAPIView(APIView):
 # TODO Add chat container to demonstrate the use of web sockets.
 class MessageAPIView(APIView):
     def get(self, request):
-        messages = Message.objects.all()
-        serializer = MessageSerializer(messages, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        messages = Message.objects.all().order_by("-timestamp")
+         html = '<div id="chat-container">'
+        for message in messages:
+            html += f'<div><strong>{message.timestamp}:</strong> {message.content}</div>'
+        html += '</div>'
+        return HttpResponse(html)
 
     def post(self, request):
         serializer = MessageSerializer(request.data)

@@ -106,7 +106,7 @@ class StatisticsAPIView(APIView):
         else:
             stats.update_stats()
 
-        hdef get(self, _request):
+        def get(self, _request):
         faqs = Faq.objects.all()
         html = '<div id="faq-container"><ul>'
         for faq in faqs:

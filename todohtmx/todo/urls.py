@@ -9,3 +9,11 @@ urlpatterns = [
     # TODO Add consumer and middleware logic
     path("api/chat", consumers.ChatConsumer.as_asgi(), name="chat_api"),
 ]
+
+websocket_urlpatters = [
+    path(
+        "ws/<str:room_name>/",
+        consumers.ChatConsumer.as_asgi(),
+        name="experimental_chat_api",
+    ),
+]

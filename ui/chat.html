@@ -11,14 +11,14 @@
             </div>
         </div>
 
-        <input type="text" id="message-input" placeholder="Type your message...">
+        <input type="text" id="message-input" placeholder="Write a message...">
         <button onclick="sendMessage()">Send</button>
 
         <script>
             const chatSocket = new WebSocket(
                 'ws://' + window.location.host + '/ws/chat/' + 'room_name' + '/'
             );
-
+            
             chatSocket.onmessage = function(e) {
                 const data = JSON.parse(e.data);
                 const chatContainer = document.getElementById('chat-container');
@@ -28,7 +28,7 @@
             };
 
             function sendMessage() {
-                const messageInput = document.getElementById('message-input');
+                const messageInput = document.querySelector('#message-input');
                 const message = messageInput.value;
                 chatSocket.send(JSON.stringify({
                     'message': message

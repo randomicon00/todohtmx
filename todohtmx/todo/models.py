@@ -40,7 +40,7 @@ class Statistics(models.Model):
     completed_count = models.IntegerField(default=0)
     archived_count = models.IntegerField(default=0)
 
-    def update_stats(self):
+    def update(self):
         counts = Todo.objects.aggregate(
             pending_count=Count("id", filter=Q(status=1)),
             in_progress_count=Count("id", filter=Q(status=2)),
@@ -76,7 +76,7 @@ class Message(models.Models):
 @receiver(post_save, sender=Todo)
 @receiver(post_detele, sender=Todo)
 def update_statistics(sender, instance, **kwargs):
-    stats, created = Statistics.objects.get_or_create(pk=1)
+    statistics, created = Statistics.objects.get_or_create(pk=1)
     if created:
         initial_counts = {
             "pending_count": 0,
@@ -85,5 +85,5 @@ def update_statistics(sender, instance, **kwargs):
             "archived_count": 0,
         }
         for key, value in initial_counts.items():
-            setattr(stats, key, value)
-    stats.update_stats()
+            setattr(statistics, key, value)
+    statistics.update()

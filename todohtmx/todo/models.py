@@ -24,7 +24,7 @@ class Todo(models.Model):
 
 
 class Faq(model.Models):
-    question = models.CharField(max_length=200)
+    question = models.CharField(max_length=255)
     answer = models.TextField()
 
     def __repr__(self) -> str:

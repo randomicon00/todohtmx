@@ -39,4 +39,3 @@ admin.site.register(Todo, TodoAdmin)
 admin.site.register(Faq, FaqAdmin)
 admin.site.register(Statistics, StatisticsAdmin)
 admin.site.register(Message, MessageAdmin)
-# TODO Register more admin models here.

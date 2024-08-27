@@ -3,7 +3,6 @@ import json
 from asgiref.sync import async_to_sync
 
 
-# TODO complete the implementation
 class ChatConsumer(WebSocketConsumer):
     def connect(self):
         self.room_name = self.scope["url_route"]["kwargs"]["room_name"]

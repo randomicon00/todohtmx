@@ -1,4 +1,4 @@
-from rest_framework import Serializers
+from rest_framework import serializers
 from .models import Faq, Statistics
 
 
@@ -25,7 +25,7 @@ class FaqSerializer(serializers.ModelSerializer):
 class StatisticsSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Statistics
+        model = Statistics 
         fields = ["pending_count", "in_progress_count", "completed_count", "total_count", "archived_count"]
         read_only_fields = ["total_count", "completed_percentage"]
 
@@ -41,3 +41,4 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ["content", "timestamp"]
+

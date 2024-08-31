@@ -10,7 +10,7 @@ urlpatterns = [
     path("api/chat", ChatConsumer.as_asgi(), name="chat_api"),
 ]
 
-websocket_urlpatters = [
+websocket_urlpatterns = [
     path(
         "ws/<str:room_name>/",
         ChatConsumer.as_asgi(),

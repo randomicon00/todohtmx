@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Todo, Faq, Statistics
+from .models import Todo, Faq, Statistics, Message
 
 
 class TodoAdmin(admin.ModelAdmin):

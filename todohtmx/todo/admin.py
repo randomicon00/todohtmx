@@ -28,7 +28,7 @@ class StatisticsAdmin(admin.ModelAdmin):
     )
 
 
-class MessageAdmin(models.Models):
+class MessageAdmin(admin.ModelAdmin):
     list_display = (
         "content",
         "timestamp",

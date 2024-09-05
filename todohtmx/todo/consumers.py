@@ -10,7 +10,7 @@ class ChatConsumer(WebsocketConsumer):
         self.room_group_name = f"chat_{self.room_name}"
         client_type = self.scope["url_route"]["kwargs"]["client_type"]
 
-        # Restrict to one agent and one customer
+        # Restrict to one agent and one customer for one on one conversation
         if client_type == "agent":
             if "agent" in ChatConsumer.clients:
                 self.close()

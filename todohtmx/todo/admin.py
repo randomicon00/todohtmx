@@ -7,11 +7,9 @@ class TodoAdmin(admin.ModelAdmin):
     list_filter = ("status",)
     search_fields = ("task",)
 
+    @admin.display(description="Task Status")
     def status_display(self, obj):
         return obj.get_status_display()
-
-    status_display.short_description = "Task Status"
-
 
 class FaqAdmin(admin.ModelAdmin):
     list_display = ("question", "answer")

@@ -2,6 +2,11 @@ from django.contrib import admin
 from .models import Todo, Faq, Statistics, Message
 
 
+class BaseAdmin(admin.ModelAdmin):
+    # Common functionality for other admins can be added here in the future
+    pass
+
+@admin.register(Todo)
 class TodoAdmin(admin.ModelAdmin):
     list_display = ("task", "status", "status_display")
     list_filter = ("status",)
@@ -11,12 +16,13 @@ class TodoAdmin(admin.ModelAdmin):
     def status_display(self, obj):
         return obj.get_status_display()
 
+@admin.register(Faq)
 class FaqAdmin(admin.ModelAdmin):
     list_display = ("question", "answer")
     search_fields = ("question",)
     ordering = ("-created_at",)
 
-
+@admin.register(Statistics)
 class StatisticsAdmin(admin.ModelAdmin):
     list_display = (
         "pending_count",
@@ -25,15 +31,9 @@ class StatisticsAdmin(admin.ModelAdmin):
         "archived_count",
     )
 
-
+@admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     list_display = (
         "content",
         "timestamp",
     )
-
-
-admin.site.register(Todo, TodoAdmin)
-admin.site.register(Faq, FaqAdmin)
-admin.site.register(Statistics, StatisticsAdmin)
-admin.site.register(Message, MessageAdmin)

@@ -38,16 +38,13 @@ class TodoAPITestCase(TestCase):
 
     def test_delete_todo_by_id(self):
         """Test that a DELETE request deletes a todo by its ID."""
-        # Create a todo to delete
         data = {"task": "Task to delete"}
         create_response = self.client.post(self.todo_url, data, format="json")
         todo_id = create_response.data["id"]
 
-        # Delete the created todo
         delete_url = reverse("api_todo_detail", args=[todo_id])
         delete_response = self.client.delete(delete_url, format="json")
         self.assertEqual(delete_response.status_code, status.HTTP_204_NO_CONTENT)
 
-        # Verify the todo is deleted
         get_response = self.client.get(delete_url, format="json")
         self.assertEqual(get_response.status_code, status.HTTP_404_NOT_FOUND)

@@ -7,48 +7,47 @@ from todo.models import Todo
 class TodoAPITestCase(TestCase):
 
     def setUp(self):
-        Todo.objects.create(task="First task to do")
-        Todo.objects.create(task="Second task to do")
+        self.todo1 = Todo.objects.create(task="First task to do")
+        self.todo2 = Todo.objects.create(task="Second task to do")
+        self.todo_url = reverse("api_todos")
 
-    # Test method that gets all todos
+    def assertTaskInResponse(self, task, response_content):
+        """Helper method to check if a task is in the response content."""
+        self.assertIn(task, str(response_content))
+
     def test_get_todos(self):
-        url = reverse("api_todos")
-        response = self.client.get(url)
+        """Test that GET request returns all todos."""
+        response = self.client.get(self.todo_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn("First task to do", str(response.content))
-        self.assertIn("Second task to do", str(response.content))
-        self.assertIn("Third task to do", str(response.content))
+        self.assertTaskInResponse(self.todo1.task, response.content)
+        self.assertTaskInResponse(self.todo2.task, response.content)
 
-    # Test method that posts (adds) a single todo
     def test_post_todo_valid(self):
-        url = reverse("api_todos")
+        """Test that a valid POST request creates a new todo."""
         data = {"task": "Fourth task to do"}
-        response = self.client.post(url, data, format="json")
+        response = self.client.post(self.todo_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn("Fourth task to do", str(response.content))
+        self.assertTaskInResponse("Fourth task to do", response.content)
 
-    # Test method that posts a single todo with an empty task
     def test_post_todo_empty_invalid(self):
-        url = reverse("api_todos")
+        """Test that a POST request with an empty task is invalid."""
         data = {"task": ""}
-        response = self.client.post(url, data, format="json")
+        response = self.client.post(self.todo_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("Please provide a task", str(response.content))
 
-38     # TODO (experimental, need a review)
-       # Test method to delete a single todo with its id.
-39     def test_delete_todo_by_id(self):
-40         # Create a todo to delete
-41         create_url = reverse("api_todos")
-42         data = {"task": "Task to delete"}
-43         create_response = self.client.post(create_url, data, format="json")
-44         todo_id = create_response.data['id']
-45         
-46         # Delete the created todo
-47         delete_url = reverse("api_todo_detail", args=[todo_id])
-48         delete_response = self.client.delete(delete_url, format="json")
-49         self.assertEqual(delete_response.status_code, status.HTTP_204_NO_CONTENT)
-50         
-51         # Verify the todo is deleted
-52         get_response = self.client.get(delete_url, format="json")
-53         self.assertEqual(get_response.status_code, status.HTTP_404_NOT_FOUND)
+    def test_delete_todo_by_id(self):
+        """Test that a DELETE request deletes a todo by its ID."""
+        # Create a todo to delete
+        data = {"task": "Task to delete"}
+        create_response = self.client.post(self.todo_url, data, format="json")
+        todo_id = create_response.data["id"]
+
+        # Delete the created todo
+        delete_url = reverse("api_todo_detail", args=[todo_id])
+        delete_response = self.client.delete(delete_url, format="json")
+        self.assertEqual(delete_response.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Verify the todo is deleted
+        get_response = self.client.get(delete_url, format="json")
+        self.assertEqual(get_response.status_code, status.HTTP_404_NOT_FOUND)

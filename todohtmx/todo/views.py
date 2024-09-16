@@ -82,6 +82,7 @@ class FaqAPIView(APIView):
         html += "</ul></div>"
         return HttpResponse(html)
 
+
 class StatisticsAPIView(APIView):
     def get(self, _request):
         stats = Statistics.objects.first()
@@ -106,28 +107,25 @@ class StatisticsAPIView(APIView):
         else:
             stats.update_stats()
 
-        def get(self, _request):
-        faqs = Faq.objects.all()
-        html = '<div id="faq-container"><ul>'
-        for faq in faqs:
-            html += f"<li><strong>{faq.question}</strong><p>{faq.answer}</p></li>"
-        html += "</ul></div>"
-        return HttpResponse(html)tml = '<div id="statistics-container">'
-        html += f"<p>Pending Count: {stats.pending_count}</p>"
-        html += f"<p>In Progress Count: {stats.in_progress_count}</p>"
-        html += f"<p>Completed Count: {stats.completed_count}</p>"
-        html += f"<p>Archived Count: {stats.archived_count}</p>"
-        html += "</div>"
-        return HttpResponse(html)
+            html = '<div id="statistics-container">'
+            html += f"<p>Pending Count: {stats.pending_count}</p>"
+            html += f"<p>In Progress Count: {stats.in_progress_count}</p>"
+            html += f"<p>Completed Count: {stats.completed_count}</p>"
+            html += f"<p>Archived Count: {stats.archived_count}</p>"
+            html += "</div>"
+            return HttpResponse(html)
+
 
 # TODO Add chat container to demonstrate the use of web sockets.
 class MessageAPIView(APIView):
     def get(self, request):
         messages = Message.objects.all().order_by("-timestamp")
-         html = '<div id="chat-container">'
+        html = '<div id="chat-container">'
         for message in messages:
-            html += f'<div><strong>{message.timestamp}:</strong> {message.content}</div>'
-        html += '</div>'
+            html += (
+                f"<div><strong>{message.timestamp}:</strong> {message.content}</div>"
+            )
+        html += "</div>"
         return HttpResponse(html)
 
     def post(self, request):

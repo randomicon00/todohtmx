@@ -3,7 +3,6 @@ from .models import Todo, Faq, Statistics, Message
 
 
 class BaseAdmin(admin.ModelAdmin):
-    # Common functionality for other admins can be added here in the future
     pass
 
 

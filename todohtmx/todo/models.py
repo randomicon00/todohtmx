@@ -17,7 +17,7 @@ class Todo(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
     def __repr__(self) -> str:
-        return f"<Todo Task: {self.task}, Status: {self.get_status_display()}>"
+        return f"<Task: {self.task}, Status: {self.get_status_display()}>"
 
     def __str__(self) -> str:
         return f"Task: {self.task}, Status: {self.get_status_display()}"

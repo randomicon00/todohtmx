@@ -51,7 +51,7 @@ ul {
 
 #todo-list {
   list-style: none;
-  padding: 0;
+  padding: 0px;
   margin: 1rem auto;
   width: 100%;
 }

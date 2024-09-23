@@ -1,33 +1,39 @@
 from channels.generic.websocket import WebsocketConsumer
-from asgiref.sync import async_to_sync
 import json
+from todo.utils import (
+    get_room_name,
+    get_client_type,
+    add_to_group,
+    remove_from_group,
+    send_group_message,
+)
 
 
 class ChatConsumer(WebsocketConsumer):
     clients = {}
 
     def connect(self):
-        self.room_name = self.get_room_name()
+        self.room_name = get_room_name(self)
         self.room_group_name = f"chat_{self.room_name}"
-        client_type = self.get_client_type()
+        client_type = get_client_type(self)
 
         if not self.add_client(client_type):
             self.close()
             return
 
-        self.add_to_group()
+        add_to_group(self)
         self.accept()
 
     def disconnect(self, close_code):
         self.remove_client(self.get_client_type())
-        self.remove_from_group()
+        remove_from_group(self)
 
     def receive(self, text_data):
         data = json.loads(text_data)
         message, sender = data.get("message"), data.get("sender")
 
         if message and sender:
-            self.send_group_message(message, sender)
+            send_group_message(self, message, sender)
 
     def chat_message(self, event):
         self.send_json(
@@ -47,7 +53,9 @@ class ChatConsumer(WebsocketConsumer):
         ChatConsumer.clients.pop(client_type, None)
 
     # Helper Methods
-    def get_room_name(self):
+
+
+"""    def get_room_name(self):
         return self.scope["url_route"]["kwargs"]["room_name"]
 
     def get_client_type(self):
@@ -71,4 +79,4 @@ class ChatConsumer(WebsocketConsumer):
                 "message": message,
                 "sender": sender,
             },
-        )
+        )"""

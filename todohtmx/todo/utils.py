@@ -1,7 +1,6 @@
 from asgiref.sync import async_to_sync
 
 
-# Helper Methods
 def get_room_name(consumer):
     return consumer.scope["url_route"]["kwargs"]["room_name"]
 

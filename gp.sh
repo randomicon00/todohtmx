@@ -1,20 +1,24 @@
 #!/bin/bash
-
-# Check if commit message was provided
+# Check if a commit message was provided as an argument
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <commit-message>"
-    exit 1
+    echo "Usage: $0 <commit-message>" # Display usage if the commit message is missing
+    exit 1                            # Exit the script with an error status
 fi
 
-# Variables
+# Store the commit message in a variable
 COMMIT_MESSAGE="$1"
 
-# Adding all changes to git
+# Add all changes (tracked, new, and modified files) to the staging area
 git add .
 
-# Committing changes
+# Commit the changes with the provided commit message
 git commit -m "$COMMIT_MESSAGE"
 
-# Pushing to the remote repository
-git push
-
+# Check if the commit was successful before attempting to push
+if [ $? -eq 0 ]; then
+    # Push the committed changes to the remote repository
+    git push
+else
+    echo "Commit failed. Please check your changes and try again."
+    exit 1 # Exit with an error status if the commit fails
+fi

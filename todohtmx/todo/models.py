@@ -23,7 +23,7 @@ class Todo(models.Model):
         return f"Task: {self.task}, Status: {self.get_status_display()}"
 
 
-class Faq(model.Models):
+class Faq(models.Models):
     question = models.CharField(max_length=255)
     answer = models.TextField()
 

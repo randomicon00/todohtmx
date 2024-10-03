@@ -51,9 +51,3 @@ class StatisticsSerializer(serializers.ModelSerializer):
         total_count = self.get_total_count(obj)
         done_count = obj.completed_count + obj.archived_count
         return (done_count / total_count * 100) if total_count > 0 else 0
-
-
-class MessageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Message
-        fields = ["content", "timestamp"]

@@ -32,11 +32,3 @@ class StatisticsAdmin(admin.ModelAdmin):
         "completed_count",
         "archived_count",
     )
-
-
-@admin.register(Message)
-class MessageAdmin(admin.ModelAdmin):
-    list_display = (
-        "content",
-        "timestamp",
-    )

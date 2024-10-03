@@ -62,17 +62,6 @@ class Statistics(models.Model):
         return f"Pending: {self.pending_count}, In Progress: {self.in_progress_count}, Completed: {self.completed_count}, Archived: {self.archived_count}"
 
 
-class Message(models.Models):
-    content = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __repr__(self):
-        return f"<Message Content: {self.content}, TimeStamp: {self.timestamp}>"
-
-    def __str__(self):
-        return f"Content: {self.content}, TimeStamp: {self.timestamp}"
-
-
 @receiver(post_save, sender=Todo)
 @receiver(post_detele, sender=Todo)
 def update_statistics(sender, instance, **kwargs):

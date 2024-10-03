@@ -114,23 +114,3 @@ class StatisticsAPIView(APIView):
             html += f"<p>Archived Count: {stats.archived_count}</p>"
             html += "</div>"
             return HttpResponse(html)
-
-
-# TODO Add chat container to demonstrate the use of web sockets.
-class MessageAPIView(APIView):
-    def get(self, request):
-        messages = Message.objects.all().order_by("-timestamp")
-        html = '<div id="chat-container">'
-        for message in messages:
-            html += (
-                f"<div><strong>{message.timestamp}:</strong> {message.content}</div>"
-            )
-        html += "</div>"
-        return HttpResponse(html)
-
-    def post(self, request):
-        serializer = MessageSerializer(request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

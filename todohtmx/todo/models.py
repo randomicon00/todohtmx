@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Count, Q
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 
@@ -63,7 +63,7 @@ class Statistics(models.Model):
 
 
 @receiver(post_save, sender=Todo)
-@receiver(post_detele, sender=Todo)
+@receiver(post_delete, sender=Todo)
 def update_statistics(sender, instance, **kwargs):
     statistics, created = Statistics.objects.get_or_create(pk=1)
     if created:

@@ -6,10 +6,7 @@ class FaqSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faq
-        fields = ["question", "answer", "question_length"]
-
-    def get_question_length(self, obj):
-        return len(obj.question)
+        fields = ["question", "answer"]
 
     def validate_question(self, value):
         if len(value) < 10:

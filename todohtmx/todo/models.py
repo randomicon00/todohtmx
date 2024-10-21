@@ -28,7 +28,7 @@ class Faq(models.Models):
     answer = models.TextField()
 
     def __repr__(self) -> str:
-        return f"<Faq Question: {self.question}, Answer: {self.answer}>"
+        return f"<Question: {self.question}, Answer: {self.answer}>"
 
     def __str__(self) -> str:
         return self.question

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Todo, Faq, Statistics, Message
+from .models import Todo, Faq, Statistics
 
 
 class BaseAdmin(admin.ModelAdmin):

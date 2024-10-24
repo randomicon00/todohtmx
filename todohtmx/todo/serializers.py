@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Faq, Statistics, Message
+from .models import Faq, Statistics
 
 
 class FaqSerializer(serializers.ModelSerializer):

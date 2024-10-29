@@ -44,7 +44,7 @@ class TodoAPIView(APIView):
                         alertElem.remove();
                     }, 300);
                 }
-            }, 3000);
+            }, 1000);
         </script>"""
 
         html = (

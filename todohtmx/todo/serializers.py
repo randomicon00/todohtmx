@@ -1,29 +1,32 @@
 from rest_framework import serializers
 from .models import Faq, Statistics
 
+# Constants for validation limits and messages
+QUESTION_MIN_LENGTH = 10
+ANSWER_MIN_LENGTH = 5
+QUESTION_ERROR = f"Question must be at least {QUESTION_MIN_LENGTH} characters in length"
+ANSWER_ERROR = f"Answer must be at least {ANSWER_MIN_LENGTH} characters in length"
+
 
 class FaqSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Faq
         fields = ["question", "answer"]
 
     def validate_question(self, value):
-        if len(value) < 10:
-            raise serializers.ValidationError(
-                "Question must be at least 10 characters in length"
-            )
+        if len(value) < QUESTION_MIN_LENGTH:
+            raise serializers.ValidationError(QUESTION_ERROR)
         return value
 
     def validate_answer(self, value):
-        if len(value) < 5:
-            raise serializers.ValidationError(
-                "Answer must be at least 5 characters in length"
-            )
+        if len(value) < ANSWER_MIN_LENGTH:
+            raise serializers.ValidationError(ANSWER_ERROR)
         return value
 
 
 class StatisticsSerializer(serializers.ModelSerializer):
+    total_count = serializers.SerializerMethodField()
+    completed_percentage = serializers.SerializerMethodField()
 
     class Meta:
         model = Statistics
@@ -33,13 +36,14 @@ class StatisticsSerializer(serializers.ModelSerializer):
             "completed_count",
             "total_count",
             "archived_count",
+            "completed_percentage",
         ]
         read_only_fields = ["total_count", "completed_percentage"]
 
     def get_total_count(self, obj):
         return (
             obj.pending_count
-            + obj.progress_count
+            + obj.in_progress_count
             + obj.completed_count
             + obj.archived_count
         )

@@ -20,9 +20,7 @@ class TodoAPIView(APIView):
         task = request.data.get("task")
         Todo.objects.create(task=task)
         if task is None or task.strip() == "":
-            return HttpResponse(
-                "Please provide a task", status=status.HTTP_400_BAD_REQUEST
-            )
+            return HttpResponse("Please add a task", status=status.HTTP_400_BAD_REQUEST)
 
         # Add tasks to the list
         tasks = "<ul>"

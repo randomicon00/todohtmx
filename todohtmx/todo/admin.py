@@ -3,11 +3,12 @@ from .models import Todo, Faq, Statistics
 
 
 class BaseAdmin(admin.ModelAdmin):
+    # Define any shared admin configuration here if needed
     pass
 
 
 @admin.register(Todo)
-class TodoAdmin(admin.ModelAdmin):
+class TodoAdmin(BaseAdmin):
     list_display = ("task", "status", "status_display")
     list_filter = ("status",)
     search_fields = ("task",)
@@ -18,14 +19,14 @@ class TodoAdmin(admin.ModelAdmin):
 
 
 @admin.register(Faq)
-class FaqAdmin(admin.ModelAdmin):
+class FaqAdmin(BaseAdmin):
     list_display = ("question", "answer")
     search_fields = ("question",)
     ordering = ("created_at",)
 
 
 @admin.register(Statistics)
-class StatisticsAdmin(admin.ModelAdmin):
+class StatisticsAdmin(BaseAdmin):
     list_display = (
         "pending_count",
         "in_progress_count",

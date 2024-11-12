@@ -29,7 +29,7 @@ class TodoAPIView(APIView):
             tasks += f"<li>{todo.task}  [{todo.get_status_display()}]</li>"
         tasks += "</ul>"
 
-        # Add fade out script
+        # Add a fade out script
         fadeOutScript = """
         <script>
             window.scrollTo(0, document.body.scrollHeight)
@@ -73,7 +73,7 @@ class TodoAPIView(APIView):
 
 
 class FaqAPIView(APIView):
-    def get(self, _request):
+    def get(self, request):
         faqs = Faq.objects.all()
         html = '<div id="faq-container"><ul>'
         for faq in faqs:
@@ -83,7 +83,7 @@ class FaqAPIView(APIView):
 
 
 class StatisticsAPIView(APIView):
-    def get(self, _request):
+    def get(self, request):
         stats = Statistics.objects.first()
         if not stats:
             stats = Statistics()

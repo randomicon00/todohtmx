@@ -1,9 +1,7 @@
 from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from .models import Todo, Faq, Statistics
-from .serializers import FaqSerializer, MessageSerializer
 
 
 class TodoAPIView(APIView):

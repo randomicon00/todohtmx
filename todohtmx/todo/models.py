@@ -25,7 +25,7 @@ class Todo(models.Model):
         return f"<Task: {self.task}, Status: {self.get_status_display()}>"
 
     def __str__(self) -> str:
-        return f"Task: {self.task}, Status: {self.get_status_display()}"
+        return f"{self.task}, {self.get_status_display()}"
 
 
 class Faq(models.Model):
@@ -45,6 +45,18 @@ class Statistics(models.Model):
     completed_count = models.IntegerField(default=0)
     archived_count = models.IntegerField(default=0)
 
+    def __repr__(self) -> str:
+        return (
+            f"<Statistics Pending: {self.pending_count}, In Progress: {self.in_progress_count}, "
+            f"Completed: {self.completed_count}, Archived: {self.archived_count}>"
+        )
+
+    def __str__(self) -> str:
+        return (
+            f"Pending: {self.pending_count}, In Progress: {self.in_progress_count}, "
+            f"Completed: {self.completed_count}, Archived: {self.archived_count}"
+        )
+
     def update(self):
         status_counts = Todo.objects.values("status").annotate(count=Count("id"))
         count_map = {status: 0 for status, _ in Todo.STATUS_CHOICES}
@@ -58,18 +70,6 @@ class Statistics(models.Model):
         self.archived_count = count_map[Todo.STATUS_ARCHIVED]
 
         self.save()
-
-    def __repr__(self) -> str:
-        return (
-            f"<Statistics Pending: {self.pending_count}, In Progress: {self.in_progress_count}, "
-            f"Completed: {self.completed_count}, Archived: {self.archived_count}>"
-        )
-
-    def __str__(self) -> str:
-        return (
-            f"Pending: {self.pending_count}, In Progress: {self.in_progress_count}, "
-            f"Completed: {self.completed_count}, Archived: {self.archived_count}"
-        )
 
 
 @receiver(post_save, sender=Todo)

@@ -16,7 +16,7 @@
 
 #add-todo input {
   flex: 2;
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 
 #add-todo button {

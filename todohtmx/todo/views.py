@@ -6,31 +6,32 @@ from .models import Todo, Faq, Statistics
 
 class TodoAPIView(APIView):
     def get(self, _request):
-
-        html = '<div id="container"><ul>'
-        todos = Todo.objects.all()
-        for todo in todos:
-            html += f"<li>{todo.task}  [{todo.get_status_display()}]</li>"
-        html += "</ul></div>"
+        html = self.render_todo_list()
         return HttpResponse(html)
 
     def post(self, request):
         task = request.data.get("task")
-        if task is None or task.strip() == "":
+        if not task or not task.strip():
             return HttpResponse("Please add a task", status=status.HTTP_400_BAD_REQUEST)
 
+        # Create the new task
         Todo.objects.create(task=task)
 
-        # Add tasks to the list
-        tasks = "<ul>"
-        for todo in Todo.objects.all():
-            tasks += f"<li>{todo.task}  [{todo.get_status_display()}]</li>"
-        tasks += "</ul>"
+        # Render the updated list
+        html = self.render_container()
+        return HttpResponse(html)
 
-        # Add a fade out script
-        fadeOutScript = """
+    def render_todo_list(self):
+        todos = Todo.objects.all()
+        tasks = "".join(
+            f"<li>{todo.task}  [{todo.get_status_display()}]</li>" for todo in todos
+        )
+        return f"<ul>{tasks}</ul>"
+
+    def render_container(self):
+        fade_out_script = """
         <script>
-            window.scrollTo(0, document.body.scrollHeight)
+            window.scrollTo(0, document.body.scrollHeight);
             setTimeout(function () {
                 let alertElem = document.getElementById("success-alert");
                 if (alertElem) {
@@ -44,13 +45,13 @@ class TodoAPIView(APIView):
             }, 1000);
         </script>"""
 
-        html = (
-            fadeOutScript
-            + """
+        return (
+            fade_out_script
+            + f"""
         <div id="container">
             <div id="add-todo">
                 <form
-                    hx-post="http://localhost:8000/todo/api/"
+                    hx-post="/todo/api/"
                     hx-swap="outerHTML"
                     hx-target="#container"
                 >
@@ -58,16 +59,15 @@ class TodoAPIView(APIView):
                     <button type="submit">Add Task</button>
                 </form>
             </div>
-            <div id="todo-list">"""
-            + tasks
-            + """</div>
+            <div id="todo-list">
+                {self.render_todo_list()}
+            </div>
             <div id="success-alert" class="alert">
                 Task has been successfully created!
             </div>
         </div>
         """
         )
-        return HttpResponse(html)
 
 
 class FaqAPIView(APIView):
@@ -82,32 +82,31 @@ class FaqAPIView(APIView):
 
 class StatisticsAPIView(APIView):
     def get(self, request):
-        stats = Statistics.objects.first()
-        if not stats:
-            stats = Statistics()
-            stats.save()
-        else:
-            stats.update_stats()
-        html = '<div id="statistics-container">'
-        html += f"<p>Pending Count: {stats.pending_count}</p>"
-        html += f"<p>In Progress Count: {stats.in_progress_count}</p>"
-        html += f"<p>Completed Count: {stats.completed_count}</p>"
-        html += f"<p>Archived Count: {stats.archived_count}</p>"
-        html += "</div>"
+        html = self.render_statistics()
         return HttpResponse(html)
 
     def post(self, request):
+        stats = self.update_statistics()
+        html = self.render_statistics(stats)
+        return HttpResponse(html)
+
+    def update_statistics(self):
         stats = Statistics.objects.first()
         if not stats:
             stats = Statistics()
             stats.save()
         else:
             stats.update_stats()
+        return stats
 
-            html = '<div id="statistics-container">'
-            html += f"<p>Pending Count: {stats.pending_count}</p>"
-            html += f"<p>In Progress Count: {stats.in_progress_count}</p>"
-            html += f"<p>Completed Count: {stats.completed_count}</p>"
-            html += f"<p>Archived Count: {stats.archived_count}</p>"
-            html += "</div>"
-            return HttpResponse(html)
+    def render_statistics(self, stats=None):
+        if stats is None:
+            stats = self.update_statistics()
+        return f"""
+        <div id="statistics-container">
+            <p>Pending Count: {stats.pending_count}</p>
+            <p>In Progress Count: {stats.in_progress_count}</p>
+            <p>Completed Count: {stats.completed_count}</p>
+            <p>Archived Count: {stats.archived_count}</p>
+        </div>
+        """

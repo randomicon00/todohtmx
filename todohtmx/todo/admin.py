@@ -20,7 +20,7 @@ class TodoAdmin(BaseAdmin):
 
 @admin.register(Faq)
 class FaqAdmin(BaseAdmin):
-    list_display = ("question", "answer")
+    list_display = ("question", "answer", "created_at", "updated_at")
     search_fields = ("question",)
     ordering = ("created_at",)
 

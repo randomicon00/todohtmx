@@ -3,7 +3,6 @@ from .models import Todo, Faq, Statistics
 
 
 class BaseAdmin(admin.ModelAdmin):
-    # Define any shared admin configuration here if needed
     pass
 
 

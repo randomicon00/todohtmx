@@ -25,7 +25,7 @@ class Todo(models.Model):
         return f"<Task: {self.task}, Status: {self.get_status_display()}>"
 
     def __str__(self) -> str:
-        return f"{self.task}, {self.get_status_display()}"
+        return f"Task: {self.task}, Status: {self.get_status_display()}"
 
 
 class Faq(models.Model):

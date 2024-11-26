@@ -6,15 +6,17 @@ class BaseAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Todo)
-class TodoAdmin(BaseAdmin):
-    list_display = ("task", "status", "status_display")
-    list_filter = ("status",)
-    search_fields = ("task",)
-
+class StatusDisplayMixin:
     @admin.display(description="Task Status")
     def status_display(self, obj):
         return obj.get_status_display()
+
+
+@admin.register(Todo)
+class TodoAdmin(BaseAdmin, StatusDisplayMixin):
+    list_display = ("task", "status", "status_display")
+    list_filter = ("status",)
+    search_fields = ("task",)
 
 
 @admin.register(Faq)

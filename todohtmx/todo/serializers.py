@@ -41,16 +41,22 @@ class StatisticsSerializer(serializers.ModelSerializer):
         read_only_fields = ["total_count", "completed_percentage"]
 
     def get_total_count(self, obj):
+        # Calculate total count dynamically
         return sum(
-            [
-                obj.pending_count,
-                obj.in_progress_count,
-                obj.completed_count,
-                obj.archived_count,
+            getattr(obj, field, 0)
+            for field in [
+                "pending_count",
+                "in_progress_count",
+                "completed_count",
+                "archived_count",
             ]
         )
 
     def get_completed_percentage(self, obj):
         total_count = self.get_total_count(obj)
-        done_count = obj.completed_count + obj.archived_count
-        return (done_count / total_count * 100) if total_count > 0 else 0
+        if total_count == 0:
+            return 0
+        done_count = sum(
+            getattr(obj, field, 0) for field in ["completed_count", "archived_count"]
+        )
+        return round(done_count / total_count * 100, 2)

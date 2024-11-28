@@ -72,6 +72,7 @@ class Statistics(models.Model):
         self.save()
 
 
+# Statistics get updated as soon as Todo task gets created or deleted
 @receiver(post_save, sender=Todo)
 @receiver(post_delete, sender=Todo)
 def update_statistics(sender, instance, **kwargs):

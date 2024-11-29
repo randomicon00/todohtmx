@@ -104,9 +104,9 @@ class StatisticsAPIView(APIView):
             stats = self.update_statistics()
         return f"""
         <div id="statistics-container">
-            <p>Pending Count: {stats.pending_count}</p>
-            <p>In Progress Count: {stats.in_progress_count}</p>
-            <p>Completed Count: {stats.completed_count}</p>
-            <p>Archived Count: {stats.archived_count}</p>
+            <p>Pending: {stats.pending_count}</p>
+            <p>In Progress: {stats.in_progress_count}</p>
+            <p>Completed: {stats.completed_count}</p>
+            <p>Archived: {stats.archived_count}</p>
         </div>
         """
